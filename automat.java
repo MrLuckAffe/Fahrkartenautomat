@@ -1,32 +1,72 @@
 import java.util.Scanner;
 
 class automat {
-  public static void main(String[] args) {
+    public static void main(String[] args) {
 
-        System.out.println("Willkommen am Fahrkartenautomat");
+        Scanner input = new Scanner(System.in);
+        String name;
+        Integer age;
+        String sale;
+        String plan;
+        Integer amount;
+        Double result = null;
+
+
+
 
         System.out.println("bitte gib deinen namen ein");
-        Scanner myname = new Scanner(System.in);
-        String name = myname.nextLine();
+        name = input.nextLine().toLowerCase();
+
+        System.out.println("Hi " + name + " und willkommen am Fahrkartenautomat");
 
         System.out.println("wie alt bist du?");
-        Scanner myage = new Scanner(System.in);
-        Integer age = myage.nextLine();
+        age = input.nextInt();
+        System.out.println(age);
 
-        System.out.println("hast du eine bahnkard");
-        Scanner mysale = new Scanner(System.in);
-        String sale = mysale.nextLine();
+        System.out.println("hast du eine bahnkard y/n");
+        sale = input.next().toLowerCase();
 
         System.out.println("Wähle bitte zwischen Tarif A, B und C");
-        Scanner myplan = new Scanner(System.in);  
-        String plan = myplan.nextLine();  
+        plan = input.next();
 
         System.out.println("wie viele Karten möchtest du?");
-        Scanner myamount = new Scanner(System.in);
-        Integer amount = myamount.nextLine();
-    
+        amount = input.nextInt();
 
+        switch (plan) {
+            case "a":
+                System.out.println("du hast tarif a und " + amount + " karten ausgewählt");
 
-  }
+                if (sale.equals("y")) {
+                    if (age < 18) {
+                        result = (2.50 * (amount - (0.2 * amount) * 0.5));
+                    } else {
+                        result = (2.50 * (amount - (0.2 * amount)));
+                    }
+                } else {
+                    if (age < 18) {
+                        result = ((2.50 * amount) * 0.5);
+                    } else {
+                        result = (2.50 * amount);
+                    }
+                }
+                System.out.println("dies wird dich " + result + "€ kosten");
+                break;
+
+            case "b":
+                System.out.println("du hast tarif b und " + amount + " karten ausgewählt");
+
+                break;
+
+            case "c":
+                System.out.println("du hast tarif c und " + amount + " karten ausgewählt");
+
+                break;
+
+            default:
+                System.out.println("diese option gibt es nicht");
+                break;
+        }
+
+    }
 
 }
